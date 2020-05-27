@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_server_form" model="ir.ui.view">
+            <field name="name">server.form</field>
+            <field name="model">jvdm.server</field>
+            <field name="arch" type="xml">
+                <form string="Module">
+                    <header>
+                        <button name="run_server" string="Run This Server" type="object" help="run this server" class="oe_highlight" confirm="Are you sure you want to execute this server?"/>
+                    </header>
+                    <group col="4" colspan="4">
+                        <field name="name"/>
+                        <field name="port"/>
+                        <newline/>
+                        <field name="ip"/>
+                        <field name="mac"/>
+                        <field name="user"/>
+                        <field name="password"/>
+                        <field name="active"/>
+                        <field name="private_key"/>
+<!--                        <field name="private_key2"/>-->
+                    </group>
+                    <separator string="Notes complémentaires"/>
+                    <field name="note"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_server_filter" model="ir.ui.view">
+            <field name="name">server.search</field>
+            <field name="model">jvdm.server</field>
+            <field name="arch" type="xml">
+                <search string="server">
+                    <field name="name"/>
+                    <filter name="active" domain="[('active', '=', True)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_server_tree" model="ir.ui.view">
+            <field name="name">server.tree</field>
+            <field name="model">jvdm.server</field>
+            <field name="arch" type="xml">
+                <tree string="Instances">
+                    <field name="name"/>
+                    <field name="ip"/>
+                    <field name="mac"/>
+                    <field name="user"/>
+                    <field name="password"/>
+                    <field name="port"/>
+                    <button name="run_server" string="run this server" type="object" icon="fa-play-circle" help="run this server"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_server_form" model="ir.actions.act_window">
+            <field name="name">Servers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jvdm.server</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create your first Server !
+              </p>
+            </field>
+        </record>
+
+        <record id="action_execute_server" model="ir.actions.server">
+            <field name="name">Run This Servers</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_jvdm_server"/>
+            <field name="binding_model_id" ref="model_jvdm_server"/>
+            <field name="state">code</field>
+            <field name="code">action = records.run_server()</field>
+        </record>
+
+        <menuitem action="action_server_form" id="menu_server" sequence="2" parent="menu_cmdb"/>
+
+    </data>
+</odoo>
