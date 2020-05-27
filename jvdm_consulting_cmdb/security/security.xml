@@ -1,0 +1,66 @@
+<openerp>
+    <data>
+        <record model="ir.module.category" id="module_cmdb1">
+            <field name="name">CMDB</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record model="res.groups" id="group_cmdb_user">
+            <field name="name">User</field>
+            <field name="category_id" ref="module_cmdb1"/>
+<!--            <field name="sequence">1</field>-->
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record model="res.groups" id="group_cmdb_manager">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="module_cmdb1"/>
+            <field name="implied_ids" eval="[(4, ref('group_cmdb_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <!--*************************************-->
+
+        <record id="cmdb_systeme_rule_user" model="ir.rule">
+            <field name="name">systeme.user</field>
+            <field name="model_id" ref="model_systeme"/>
+            <field name="domain_force">[('landscape_id.project_ids.message_follower_ids.partner_id', 'in', [user.partner_id.id])]</field>
+            <field name="groups" eval="[(4, ref('group_cmdb_user'))]"/>
+        </record>
+
+        <record id="cmdb_systeme_rule_manager" model="ir.rule">
+            <field name="name">systeme.manager</field>
+            <field name="model_id" ref="model_systeme"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('group_cmdb_manager'))]"/>
+        </record>
+
+        <record id="cmdb_server_rule_user" model="ir.rule">
+            <field name="name">server.user</field>
+            <field name="model_id" ref="model_jvdm_server"/>
+            <field name="domain_force">[('systeme_ids.landscape_id.project_ids.message_follower_ids.partner_id', 'in', [user.partner_id.id])]</field>
+            <field name="groups" eval="[(4, ref('group_cmdb_user'))]"/>
+        </record>
+
+        <record id="cmdb_server_rule_manager" model="ir.rule">
+            <field name="name">server.manager</field>
+            <field name="model_id" ref="model_jvdm_server"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('group_cmdb_manager'))]"/>
+        </record>
+
+        <record id="cmdb_landscape_rule_user" model="ir.rule">
+            <field name="name">landscape.user</field>
+            <field name="model_id" ref="model_project_landscape"/>
+            <field name="domain_force">[('project_ids.message_follower_ids.partner_id', 'in', [user.partner_id.id])]</field>
+            <field name="groups" eval="[(4, ref('group_cmdb_user'))]"/>
+        </record>
+
+        <record id="cmdb_landscape_rule_manager" model="ir.rule">
+            <field name="name">landscape.manager</field>
+            <field name="model_id" ref="model_project_landscape"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('group_cmdb_manager'))]"/>
+        </record>
+    </data>
+</openerp>
