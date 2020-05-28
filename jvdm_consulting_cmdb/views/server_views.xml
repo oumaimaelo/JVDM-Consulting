@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <form string="Module">
                     <header>
+
 <!--                        <button name="run_server" string="Run This Server" type="object" help="run this server" class="oe_highlight" confirm="Are you sure you want to execute this server?"/>-->
                     </header>
                     <group col="4" colspan="4">
