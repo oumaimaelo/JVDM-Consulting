@@ -79,7 +79,7 @@
               </p>
             </field>
         </record>
-
+<!--        server action-->
 <!--        <record id="action_execute_system" model="ir.actions.server">-->
 <!--            <field name="name">Run This Systems</field>-->
 <!--            <field name="type">ir.actions.server</field>-->
