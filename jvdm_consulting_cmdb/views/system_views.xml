@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_systeme_form" model="ir.ui.view">
+            <field name="name">systeme.form</field>
+            <field name="model">systeme</field>
+            <field name="arch" type="xml">
+                <form string="Module">
+                    <header>
+<!--                        <button name="run_system" string="Run This System" type="object" help="run this system" class="oe_highlight"/>-->
+                    </header>
+                    <separator string="Landscape"/>
+                    <group col="4" colspan="4">
+                        <field name="landscape_id"/>
+                        <field name="name"/>
+                    </group>
+                    <separator string="Système"/>
+                    <group col="4" colspan="4">
+                        <field name="user"/>
+                        <field name="ip"/>
+                        <field name="password"/>
+                        <field name="master_password"/>
+                        <field name="active"/>
+                    </group>
+                    <separator string="Database"/>
+                    <group style="width:50%">
+                        <field name="db_user"/>
+                        <field name="db_password"/>
+                    </group>
+                    <separator string="Server"/>
+                    <group>
+                        <field name="server_id" string="Name" style="width:30%"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_systeme_filter" model="ir.ui.view">
+            <field name="name">systeme.search</field>
+            <field name="model">systeme</field>
+            <field name="arch" type="xml">
+                <search string="Systeme">
+                    <filter name="active" domain="[('active', '=', True)]"/>
+                    <filter name="landscape_id" string="Application" context="{'group_by':'landscape_id'}"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_systeme_tree" model="ir.ui.view">
+            <field name="name">systeme.tree</field>
+            <field name="model">systeme</field>
+            <field name="arch" type="xml">
+                <tree string="Instances">
+                    <field name="name"/>
+                    <field name="ip"/>
+                    <field name="master_password"/>
+                    <field name="landscape_id"/>
+                    <field name="landscape_desc"/>
+                    <field name="server_id"/>
+                    <field name="user"/>
+                    <field name="password"/>
+                    <field name="db_user" string="Db login"/>
+                    <field name="db_password"  string="Db password"/>
+<!--                    <button name="run_system" string="Run This System" type="object" icon="fa-play-circle" help="run this system"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_systeme_form" model="ir.actions.act_window">
+            <field name="name">Instances</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">systeme</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_active':1}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create your first Instance !
+              </p>
+            </field>
+        </record>
+<!--        server action-->
+<!--        <record id="action_execute_system" model="ir.actions.server">-->
+<!--            <field name="name">Run This Systems</field>-->
+<!--            <field name="type">ir.actions.server</field>-->
+<!--            <field name="model_id" ref="model_systeme"/>-->
+<!--            <field name="binding_model_id" ref="model_systeme"/>-->
+<!--            <field name="state">code</field>-->
+<!--            <field name="code">action = records.run_system()</field>-->
+<!--        </record>-->
+
+        <menuitem action="action_systeme_form" id="menu_systeme" sequence="1" parent="menu_cmdb"/>
+
+    </data>
+</odoo>

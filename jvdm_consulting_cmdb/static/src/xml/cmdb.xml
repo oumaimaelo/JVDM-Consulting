@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="jvdm_consulting_cmdb.AccessDataCopy">
+        <div><t t-esc="message"/></div>
+<!--        <p><input style="text-align:center;" id="system-ip" t-att-value="data.ip"></input><button class="copy-ip">Copy Login</button></p>
+        <p><input style="text-align:center;" id="system-password" t-att-value="data.password"></input><button class="copy-password">Copy Password</button></p>
+        <p>We will redirect you to <t t-esc="data.name"/> in: <span id="countdown">3</span></p>-->
+        <div class="o_form_view o_form_editable">
+            <div class="o_group">
+                <table class="o_group o_inner_group o_group_col_6">
+                    <tbody>
+                        <tr>
+                            <td class="o_td_label">
+                                <label class="o_form_label">Login</label>
+                            </td>
+                            <td style="width: 100%;">
+                                <div class="input-group mb-3" style="display:flex;">
+                                  <input type="text" class="form-control" id="system-login" t-att-value="data.user" style="width:auto;"/>
+                                  <div class="input-group-append">
+                                      <button class="btn btn-outline-secondary copy-login" type="button"><i class="fa fa-copy"></i></button>
+                                  </div>
+                                </div>
+<!--                                <input class="o_field_char o_input" id="system-ip" t-att-value="data.ip"/><button class="btn copy-ip"><i class="fa fa-home"/></button>-->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="o_td_label">
+                                <label class="o_form_label">Password</label>
+                            </td>
+                            <td style="width: 100%;">
+                                <div class="input-group mb-3" style="display:flex;">
+                                    <input type="text" class="form-control" id="system-password" t-att-value="data.password" style="width:auto;"/>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary copy-password" type="button"><i class="fa fa-copy"></i></button>
+                                    </div>
+                                </div>
+<!--                                <input class="o_field_char o_input" id="system-password" t-att-value="data.password"/><button class="btn copy-password"><i class="fa fa-copy"></i></button>-->
+                            </td>
+                        </tr>
+<!--                        <tr>
+                            <td class="o_td_label">
+                                <label class="o_form_label o_readonly_modifier" style="min-width: 270px;">We will redirect you to the <t t-esc="data.name"/> system in</label>
+                            </td>
+                            <td style="width: 100%;">
+                                <div class="o_progressbar o_field_widget o_readonly_modifier" name="progression">
+                                    <div class="o_progress">
+                                        <div id="progressbar" class="o_progressbar_complete" style="width: 0%;"></div>
+                                    </div>
+                                    <div id="progressbar_value" class="o_progressbar_value">0%</div>
+                                </div>
+                            </td>
+                        </tr>-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="o_progressbar o_field_widget o_readonly_modifier" name="progression">
+            <div style="margin-right: 50px;">We will redirect you to the <t t-esc="data.name"/> system in:</div>
+            <div class="o_progress">
+                <div id="progressbar" class="o_progressbar_complete" style="width: 0%;"></div>
+            </div>
+            <div id="progressbar_value" class="o_progressbar_value">0%</div>
+        </div>
+    </t>
+</templates>

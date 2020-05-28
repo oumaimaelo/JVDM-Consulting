@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="project_landscape_form_view" model="ir.ui.view">
+            <field name="name">project.landscape.form</field>
+            <field name="model">project.landscape</field>
+            <field name="arch" type="xml">
+                <form string="Landscapes">
+                    <sheet>
+                        <group>
+                            <group name="left">
+                                <field name="name"/>
+                                <field name="description"/>
+                            </group>
+                            <group name="right">
+                                <field name="version"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Instances">
+                                <field name="systeme_ids" nolabel="1" colspan="4">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="ip" widget="url"/>
+                                        <field name="server_id"/>
+                                        <field name="user"/>
+                                        <field name="password"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Projects">
+                                <field name="project_ids" nolabel="1" colspan="4">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="user_id"/>
+                                        <field name="company_id" invisible="1"/>
+                                        <field name="partner_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_landscape_filter" model="ir.ui.view">
+            <field name="name">landscape.filter</field>
+            <field name="model">project.landscape</field>
+            <field name="arch" type="xml">
+                <search string="landscape">
+                    <field name="name"/>
+                    <field name="active"/>
+                    <filter name="active" domain="[('active', '=', True)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_landscape_tree" model="ir.ui.view">
+            <field name="name">landscape.tree</field>
+            <field name="model">project.landscape</field>
+            <field name="arch" type="xml">
+                <tree string="Landscapes">
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="version"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_landscape_form" model="ir.actions.act_window">
+            <field name="name">Landscapes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">project.landscape</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create your first Landscape !
+              </p>
+            </field>
+        </record>
+        <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+        <menuitem id="main_cmdb_menu" name="CMDB" />
+        <menuitem name="CMDB" sequence="0" id="menu_cmdb" parent="main_cmdb_menu" groups="group_cmdb_user,group_cmdb_manager"/>
+        <menuitem name="Configuration" sequence="0" id="menu_configuration" parent="main_cmdb_menu" groups="group_cmdb_user,group_cmdb_manager"/>
+        <menuitem action="action_landscape_form" sequence="1" id="menu_landscape" parent="menu_configuration"/>
+
+    </data>
+</odoo>

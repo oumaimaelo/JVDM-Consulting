@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="project.open_view_task_list_kanban" model="ir.actions.act_window.view">
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">kanban</field>
+            <field name="act_window_id" ref="project.action_view_task"/>
+        </record>
+
+        <record id="edit_project" model="ir.ui.view">
+            <field name="name">project.project.form</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <newline/>
+                    <field name="landscape_id" groups="jvdm_consulting_cmdb.group_cmdb_user,jvdm_consulting_cmdb.group_cmdb_manager"/>
+                    <newline/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="inherited_view_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.form.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='function']" position="before">
+                    <field name="company_id"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>
