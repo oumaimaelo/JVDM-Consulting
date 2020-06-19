@@ -51,8 +51,8 @@
             <field name="arch" type="xml">
                 <search string="landscape">
                     <field name="name"/>
-                    <field name="active"/>
-                    <filter name="active" domain="[('active', '=', True)]"/>
+                    <filter string="Active" name="active" domain="[('active', '=', True)]"/>
+                    <filter string="Inactive" name="inactive" domain="[('active', '=', False)]"/>
                 </search>
             </field>
         </record>
@@ -74,6 +74,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">project.landscape</field>
             <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_active':1}</field>
             <field name="help" type="html">
               <p class="o_view_nocontent_smiling_face">
                 Create your first Landscape !

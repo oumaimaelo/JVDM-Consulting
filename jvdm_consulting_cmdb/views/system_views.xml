@@ -41,7 +41,11 @@
             <field name="model">systeme</field>
             <field name="arch" type="xml">
                 <search string="Systeme">
-                    <filter name="active" domain="[('active', '=', True)]"/>
+                    <field name="name"/>
+                    <field name="user"/>
+                    <field name="ip"/>
+                    <filter string="Active" name="active" domain="[('active', '=', True)]"/>
+                    <filter string="Inactive" name="inactive" domain="[('active', '=', False)]"/>
                     <filter name="landscape_id" string="Application" context="{'group_by':'landscape_id'}"/>
                 </search>
             </field>
@@ -79,7 +83,7 @@
               </p>
             </field>
         </record>
-
+<!--        server action-->
 <!--        <record id="action_execute_system" model="ir.actions.server">-->
 <!--            <field name="name">Run This Systems</field>-->
 <!--            <field name="type">ir.actions.server</field>-->
