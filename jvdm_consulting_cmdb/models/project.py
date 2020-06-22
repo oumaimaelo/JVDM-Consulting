@@ -35,22 +35,22 @@ class ResPartner(models.Model):
                                                      help="This account will be used instead of the default one as the receivable account for the current partner",
                                                      required=False)
 
-class ResUsers(models.Model):
-    _inherit = 'res.users'
+# class ResUsers(models.Model):
+#     _inherit = 'res.users'
+#
+#     landscape_read_access = fields.Boolean(string="Read Access", default=True)
+#     landscape_write_access = fields.Boolean(string="Write Access", default=True)
 
-    landscape_read_access = fields.Boolean(string="Read Access", default=True)
-    landscape_write_access = fields.Boolean(string="Write Access", default=True)
-
-    def _get_access(self):
-        group_cmdb_user_id = self.env['ir.model.data'].xmlid_to_res_id('jvdm_consulting_cmdb.group_cmdb_user')
-        cmdb_user_ids = self.env['project.landscape']._get_users()
-        model_id = self.env.ref('jvdm_consulting_cmdb.model_project_landscape')
-        for rec in self:
-            if rec.id in cmdb_user_ids:
-                sql_query = """select perm_read, perm_write from ir_model_access where model_id = %s and group_id = %s"""
-                params = (model_id.id, group_cmdb_user_id,)
-                self.env.cr.execute(sql_query, params)
-                results = self.env.cr.fetchall()
-                rec.landscape_read_access = results[0][0]
-                rec.landscape_write_access = results[0][1]
+    # def _get_access(self):
+    #     group_cmdb_user_id = self.env['ir.model.data'].xmlid_to_res_id('jvdm_consulting_cmdb.group_cmdb_user')
+    #     cmdb_user_ids = self.env['project.landscape']._get_users()
+    #     model_id = self.env.ref('jvdm_consulting_cmdb.model_project_landscape')
+    #     for rec in self:
+    #         if rec.id in cmdb_user_ids:
+    #             sql_query = """select perm_read, perm_write from ir_model_access where model_id = %s and group_id = %s"""
+    #             params = (model_id.id, group_cmdb_user_id,)
+    #             self.env.cr.execute(sql_query, params)
+    #             results = self.env.cr.fetchall()
+    #             rec.landscape_read_access = results[0][0]
+    #             rec.landscape_write_access = results[0][1]
 
