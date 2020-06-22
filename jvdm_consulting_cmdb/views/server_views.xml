@@ -36,8 +36,10 @@
                 <search string="server">
                     <field name="name"/>
                     <field name="ip"/>
+                    <field name="user"/>
                     <filter string="Active" name="active" domain="[('active', '=', True)]"/>
                     <filter string="Inactive" name="inactive" domain="[('active', '=', False)]"/>
+                    <filter string="Login" name="user" context="{'group_by': 'user'}"/>
                 </search>
             </field>
         </record>
