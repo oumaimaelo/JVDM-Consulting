@@ -51,8 +51,11 @@
             <field name="arch" type="xml">
                 <search string="landscape">
                     <field name="name"/>
+                    <field name="version"/>
+                    <field name="description" filter_domain="[('description', 'ilike', self)]"/>
                     <filter string="Active" name="active" domain="[('active', '=', True)]"/>
                     <filter string="Inactive" name="inactive" domain="[('active', '=', False)]"/>
+                    <filter string="Version" name="version" context="{'group_by': 'version'}"/>
                 </search>
             </field>
         </record>
