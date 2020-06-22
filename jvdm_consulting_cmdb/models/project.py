@@ -13,9 +13,11 @@ class ProjectTask(models.Model):
 
     @api.model
     def create(self, vals):
+        if 'project_id' in vals:
+            project_id = self.env['project.project'].search([('id', '=', vals['project_id'])])
+            if project_id:
+                vals['user_id'] = project_id.user_id.id
         result = super(ProjectTask, self).create(vals)
-        if not result.user_id:
-            result.user_id = result.project_id.user_id.id
         return result
 
 
