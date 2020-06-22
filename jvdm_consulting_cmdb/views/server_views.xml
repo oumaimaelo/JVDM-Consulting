@@ -11,7 +11,8 @@
 
 <!--                        <button name="run_server" string="Run This Server" type="object" help="run this server" class="oe_highlight" confirm="Are you sure you want to execute this server?"/>-->
                     </header>
-                    <group col="4" colspan="4">
+                    <sheet>
+                        <group col="4" colspan="4">
                         <field name="name"/>
                         <field name="port"/>
                         <newline/>
@@ -25,6 +26,11 @@
                     </group>
                     <separator string="Notes complémentaires"/>
                     <field name="note"/>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
