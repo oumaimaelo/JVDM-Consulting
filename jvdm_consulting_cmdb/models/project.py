@@ -7,6 +7,18 @@ class ProjectProject(models.Model):
     _inherit = "project.project"
     landscape_id = fields.Many2one('project.landscape', 'Landscape')
 
+
+class ProjectTask(models.Model):
+    _inherit = "project.task"
+
+    @api.model
+    def create(self, vals):
+        result = super(ProjectTask, self).create(vals)
+        if not result.user_id:
+            result.user_id = result.project_id.user_id.id
+        return result
+
+
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
