@@ -10,7 +10,8 @@
                     <header>
 <!--                        <button name="run_system" string="Run This System" type="object" help="run this system" class="oe_highlight"/>-->
                     </header>
-                    <separator string="Landscape"/>
+                    <sheet>
+                        <separator string="Landscape"/>
                     <group col="4" colspan="4">
                         <field name="landscape_id"/>
                         <field name="name"/>
@@ -18,7 +19,7 @@
                     <separator string="Système"/>
                     <group col="4" colspan="4">
                         <field name="user"/>
-                        <field name="ip"/>
+                        <field name="ip" widget="url"/>
                         <field name="password"/>
                         <field name="master_password"/>
                         <field name="active"/>
@@ -32,6 +33,11 @@
                     <group>
                         <field name="server_id" string="Name" style="width:30%"/>
                     </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
@@ -42,6 +48,7 @@
             <field name="arch" type="xml">
                 <search string="Systeme">
                     <field name="name"/>
+                    <field name="landscape_desc" filter_domain="[('landscape_desc', 'ilike', self)]"/>
                     <field name="user"/>
                     <field name="ip"/>
                     <filter string="Active" name="active" domain="[('active', '=', True)]"/>
@@ -57,7 +64,7 @@
             <field name="arch" type="xml">
                 <tree string="Instances">
                     <field name="name"/>
-                    <field name="ip"/>
+                    <field name="ip" widget="url"/>
                     <field name="master_password"/>
                     <field name="landscape_id"/>
                     <field name="landscape_desc"/>

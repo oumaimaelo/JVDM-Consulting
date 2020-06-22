@@ -5,6 +5,8 @@ from odoo.exceptions import ValidationError
 
 class Systeme(models.Model):
     _name = "systeme"
+    _inherit = ['mail.thread']
+
     name = fields.Char(size=128)
     landscape_id = fields.Many2one('project.landscape', 'Landscape')
     landscape_desc = fields.Char('Description', related='landscape_id.description', store=True)
@@ -15,7 +17,7 @@ class Systeme(models.Model):
     master_password = fields.Char('Master Password', size=128)
     db_user = fields.Char('Login', size=128)
     db_password = fields.Char('Password', size=128)
-    active = fields.Boolean()
+    active = fields.Boolean(default=True)
 
     @api.model
     def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
@@ -47,6 +49,8 @@ class Systeme(models.Model):
 
 class Server(models.Model):
     _name = "jvdm.server"
+    _inherit = ['mail.thread']
+
     name = fields.Char(size=128)
     port = fields.Char('Port SSH', size=128)
     ip = fields.Char('IP', size=128)
@@ -54,7 +58,7 @@ class Server(models.Model):
     user = fields.Char('Login', size=128)
     password = fields.Char('Password', size=128)
     systeme_ids = fields.One2many('systeme', 'server_id')
-    active = fields.Boolean()
+    active = fields.Boolean(default=True)
     note = fields.Text('Notes complémentaires')
     private_key = fields.Binary(string='Private Key')
     # private_key2 = fields.Many2one('ir.attachment', string='Private Key')
