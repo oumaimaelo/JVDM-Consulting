@@ -35,11 +35,11 @@ class ResPartner(models.Model):
                                                      help="This account will be used instead of the default one as the receivable account for the current partner",
                                                      required=False)
 
-# class ResUsers(models.Model):
-#     _inherit = 'res.users'
-#
-#     landscape_read_access = fields.Boolean(string="Read Access", default=True)
-#     landscape_write_access = fields.Boolean(string="Write Access", default=True)
+class ResUsers(models.Model):
+    _inherit = 'res.users'
+
+    landscape_read_access = fields.Boolean(string="Read Access", default=True)
+    landscape_write_access = fields.Boolean(string="Write Access", default=True)
 
     # def _get_access(self):
     #     group_cmdb_user_id = self.env['ir.model.data'].xmlid_to_res_id('jvdm_consulting_cmdb.group_cmdb_user')

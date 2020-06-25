@@ -33,5 +33,20 @@
 
             </field>
         </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="inherited_view_users_form" model="ir.ui.view">
+            <field name="name">res.users.form.view</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//notebook" position="before">
+                    <field name="landscape_read_access" invisible="1"/>
+                    <field name="landscape_write_access" invisible="1"/>
+                </xpath>
+
+            </field>
+        </record>
     </data>
 </odoo>
