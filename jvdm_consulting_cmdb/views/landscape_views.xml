@@ -41,11 +41,11 @@
                             </page>
                             <page string="Authorized Users">
                                 <field name="user_ids" nolabel="1" colspan="4">
-<!--                                    <tree editable="bottom">-->
-<!--                                        <field name="name" string="User"/>-->
-<!--                                        <field name="landscape_read_access" readonly="1"/>-->
-<!--                                        <field name="landscape_write_access" readonly="1"/>-->
-<!--                                    </tree>-->
+                                    <tree editable="bottom">
+                                        <field name="name" string="User"/>
+                                        <field name="landscape_read_access" readonly="1"/>
+                                        <field name="landscape_write_access" readonly="1"/>
+                                    </tree>
                                 </field>
                             </page>
                         </notebook>
