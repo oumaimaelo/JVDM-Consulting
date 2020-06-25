@@ -25,6 +25,5 @@ class ProjectLandscape(models.Model):
             self.message_subscribe(partner_ids=self.user_ids.partner_id.ids + manager_ids)
             group_cmdb_user_id = self.env['ir.model.data'].xmlid_to_res_id('jvdm_consulting_cmdb.group_cmdb_user')
             group_object = self.env['res.groups'].browse(group_cmdb_user_id) \
-                .write({'users': [(4, user.id) for user in self.user_ids
-                                  if user.landscape_read_access and user.landscape_write_access]})
+                .write({'users': [(4, user.id) for user in self.user_ids]})
         return result
