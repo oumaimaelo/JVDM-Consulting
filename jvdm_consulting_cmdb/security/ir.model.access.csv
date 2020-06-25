@@ -1,7 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_landscape_user,landscape.user,model_project_landscape,group_cmdb_user,1,1,1,0
+access_landscape_user,landscape.user,model_project_landscape,group_cmdb_user,1,1,1,1
 access_landscape_manager,landscape.manager,model_project_landscape,group_cmdb_manager,1,1,1,1
-access_systeme_user,systeme.user,model_systeme,group_cmdb_user,1,1,1,0
+access_systeme_user,systeme.user,model_systeme,group_cmdb_user,1,1,1,1
 access_systeme_manager,systeme.manager,model_systeme,group_cmdb_manager,1,1,1,1
-access_server_user,server.user,model_jvdm_server,group_cmdb_user,1,1,1,0
+access_server_user,server.user,model_jvdm_server,group_cmdb_user,1,1,1,1
 access_server_manager,server.manager,model_jvdm_server,group_cmdb_manager,1,1,1,1
