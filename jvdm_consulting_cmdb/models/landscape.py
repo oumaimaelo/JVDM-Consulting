@@ -13,8 +13,8 @@ class ProjectLandscape(models.Model):
     systeme_ids = fields.One2many('systeme', 'landscape_id', string='Systèmes')
     project_ids = fields.One2many('project.project', 'landscape_id', 'project')
     active = fields.Boolean(default=True)
-    # user_ids = fields.Many2many(comodel_name="res.users", relation="landscape_user_rel",
-    #                             column1="landscape_id", column2="user_id", string="Users")
+    user_ids = fields.Many2many(comodel_name="res.users", relation="landscape_user_rel",
+                                column1="landscape_id", column2="user_id", string="Users")
     #
     # def write(self, vals):
     #     result = super(ProjectLandscape, self).write(vals)
