@@ -13,25 +13,18 @@ class ProjectLandscape(models.Model):
     systeme_ids = fields.One2many('systeme', 'landscape_id', string='Systèmes')
     project_ids = fields.One2many('project.project', 'landscape_id', 'project')
     active = fields.Boolean(default=True)
-    # user_ids = fields.Many2many(comodel_name="res.users", relation="landscape_user_rel",
-    #                             compute='_get_users', inverse='_set_users',
-    #                             column1="landscape_id", column2="user_id", string="Users")
-    #
-    # def _get_users(self):
-    #     group_cmdb_user_id = self.env['ir.model.data'].xmlid_to_res_id('jvdm_consulting_cmdb.group_cmdb_user')
-    #     users_ids = []
-    #     sql_query = """select uid from res_groups_users_rel where gid = %s"""
-    #     params = (group_cmdb_user_id,)
-    #     self.env.cr.execute(sql_query, params)
-    #     results = self.env.cr.fetchall()
-    #     for users_id in results:
-    #         users_ids.append(users_id[0])
-    #
-    #     self.user_ids = self.env['res.users'].browse(users_ids)
-    #     return users_ids
-    #
-    # def _set_users(self):
-    #     group_cmdb_user_id = self.env['ir.model.data'].xmlid_to_res_id('jvdm_consulting_cmdb.group_cmdb_user')
-    #     group_object = self.env['res.groups'].browse(group_cmdb_user_id) \
-    #         .write({'users': [(4, user.id) for user in self.user_ids
-    #                           if user.landscape_read_access and user.landscape_write_access]})
+    user_ids = fields.Many2many(comodel_name="res.users", relation="landscape_user_rel",
+                                column1="landscape_id", column2="user_id", string="Users")
+
+    def write(self, vals):
+        result = super(ProjectLandscape, self).write(vals)
+        if 'user_ids' in vals:
+            group_cmdb_manager_id = self.env['ir.model.data'].xmlid_to_res_id('jvdm_consulting_cmdb.group_cmdb_manager')
+            manager_ids = self.env['res.groups'].browse(group_cmdb_manager_id).users.partner_id.ids
+            self.message_unsubscribe(partner_ids=self.message_partner_ids.ids)
+            self.message_subscribe(partner_ids=self.user_ids.partner_id.ids + manager_ids)
+            group_cmdb_user_id = self.env['ir.model.data'].xmlid_to_res_id('jvdm_consulting_cmdb.group_cmdb_user')
+            group_object = self.env['res.groups'].browse(group_cmdb_user_id) \
+                .write({'users': [(4, user.id) for user in self.user_ids
+                                  if user.landscape_read_access and user.landscape_write_access]})
+        return result
