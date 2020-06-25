@@ -19,11 +19,13 @@ class ProjectLandscape(models.Model):
     def write(self, vals):
         result = super(ProjectLandscape, self).write(vals)
         if 'user_ids' in vals:
-            group_cmdb_manager_id = self.env['ir.model.data'].xmlid_to_res_id('jvdm_consulting_cmdb.group_cmdb_manager')
+            group_cmdb_manager_id = 71
+            # group_cmdb_manager_id = self.env['ir.model.data'].xmlid_to_res_id('jvdm_consulting_cmdb.group_cmdb_manager')
             manager_ids = self.env['res.groups'].sudo().browse(group_cmdb_manager_id).users.partner_id.ids
             self.message_unsubscribe(partner_ids=self.message_partner_ids.ids)
             self.message_subscribe(partner_ids=self.user_ids.partner_id.ids + manager_ids)
-            group_cmdb_user_id = self.env['ir.model.data'].xmlid_to_res_id('jvdm_consulting_cmdb.group_cmdb_user')
+            group_cmdb_user_id = 70
+            # group_cmdb_user_id = self.env['ir.model.data'].xmlid_to_res_id('jvdm_consulting_cmdb.group_cmdb_user')
             group_object = self.env['res.groups'].sudo().browse(group_cmdb_user_id) \
                 .write({'users': [(4, user.id) for user in self.user_ids]})
         return result
