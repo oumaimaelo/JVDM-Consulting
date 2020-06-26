@@ -40,12 +40,13 @@
                                 </field>
                             </page>
                             <page string="Authorized Users">
-                                <field name="user_ids" nolabel="1" colspan="4">
-<!--                                    <tree editable="bottom">-->
-<!--                                        <field name="name" string="User"/>-->
-<!--                                        <field name="landscp_read_access" readonly="1"/>-->
-<!--                                        <field name="landscp_write_access" readonly="1"/>-->
-<!--                                    </tree>-->
+<!--                                <field name="user_ids" nolabel="1" colspan="4">-->
+                                <field name="cmdb_user_ids" nolabel="1" colspan="4" widget="one2many">
+                                    <tree editable="top">
+                                        <field name="user_id"/>
+                                        <field name="landscp_read_access"/>
+                                        <field name="landscp_write_access"/>
+                                    </tree>
                                 </field>
                             </page>
                         </notebook>
