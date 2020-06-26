@@ -66,5 +66,11 @@
             <field name="domain_force">[(1,'=',1)]</field>
             <field name="groups" eval="[(4, ref('group_cmdb_manager'))]"/>
         </record>
+<!--        <record id="cmdb_users_rule_manager" model="ir.rule">-->
+<!--            <field name="name">cmdb.users.manager</field>-->
+<!--            <field name="model_id" ref="model_cmdb_users"/>-->
+<!--            <field name="domain_force">[(1,'=',1)]</field>-->
+<!--            <field name="groups" eval="[(4, ref('group_cmdb_manager'))]"/>-->
+<!--        </record>-->
     </data>
 </odoo>
