@@ -17,6 +17,11 @@ class CMDBUsers(models.Model):
         if self.landscp_write_access:
             self.landscp_read_access = True
 
+    @api.onchange('landscp_read_access')
+    def _onchange_landscp_read_access(self):
+        if not self.landscp_read_access:
+            self.landscp_write_access = False
+
     user_id = fields.Many2one(comodel_name="res.users", string="User")
     landscp_read_access = fields.Boolean(string="Read Access", default=True)
     landscp_write_access = fields.Boolean(string="Write Access", default=True)
