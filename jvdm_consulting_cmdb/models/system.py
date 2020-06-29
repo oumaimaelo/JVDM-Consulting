@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
-from odoo.exceptions import ValidationError
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError, UserError
 
 class Systeme(models.Model):
     _name = "systeme"
@@ -18,6 +18,19 @@ class Systeme(models.Model):
     db_user = fields.Char('Login', size=128)
     db_password = fields.Char('Password', size=128)
     active = fields.Boolean(default=True)
+
+    def write(self, vals):
+        group_cmdb_manager_id = self.env['ir.model.data'].xmlid_to_res_id('jvdm_consulting_cmdb.group_cmdb_manager')
+        manager_ids = self.env['res.groups'].sudo().browse(group_cmdb_manager_id).users.ids
+        user_id = self.env.user.id
+        for record in self:
+            cmdb_user_id = record.landscape_id.cmdb_user_ids.filtered(lambda u: u.user_id.id == user_id)
+            if (user_id not in manager_ids) and not cmdb_user_id.landscp_write_access:
+                raise UserError(
+                    _('You are not allowed to write on the current record, only managers and users that have the Write '
+                      'access on this record (%s with id= %s) can do.') % (record._name, record.id))
+        result = super(Systeme, self).write(vals)
+        return result
 
     @api.model
     def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
@@ -39,10 +52,6 @@ class Systeme(models.Model):
                 return result
         # print('result:', res)
         return res
-    # @api.onchange('landscape_id')
-    # def description_of_landscape(self):
-    #     print("****")
-    #     self.landscape_desc = self.landscape_id.description
 
     def run_system(self):
         pass
@@ -114,3 +123,16 @@ class Server(models.Model):
         end = '\e[0m'
 
         return colors[color]+string+end+' '
+
+    def write(self, vals):
+        group_cmdb_manager_id = self.env['ir.model.data'].xmlid_to_res_id('jvdm_consulting_cmdb.group_cmdb_manager')
+        manager_ids = self.env['res.groups'].sudo().browse(group_cmdb_manager_id).users.ids
+        user_id = self.env.user.id
+        for record in self:
+            cmdb_user_id = record.systeme_ids.landscape_id.cmdb_user_ids.filtered(lambda u: u.user_id.id == user_id)
+            if (user_id not in manager_ids) and not cmdb_user_id.landscp_write_access:
+                raise UserError(
+                    _('You are not allowed to write on the current record, only managers and users that have the Write '
+                      'access on this record (%s with id= %s) can do.') % (record._name, record.id))
+        result = super(Server, self).write(vals)
+        return result
