@@ -5,7 +5,7 @@ from odoo.exceptions import ValidationError
 
 class Systeme(models.Model):
     _name = "systeme"
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(size=128)
     landscape_id = fields.Many2one('project.landscape', 'Landscape')
@@ -21,9 +21,9 @@ class Systeme(models.Model):
 
     @api.model
     def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
-        print('domain:', domain)
-        print('fields:', fields)
-        print('groupby:', groupby)
+        # print('domain:', domain)
+        # print('fields:', fields)
+        # print('groupby:', groupby)
         res = super(Systeme, self).read_group(domain, fields, groupby, offset=offset, limit=limit, orderby=orderby,
                                             lazy=lazy)
         if groupby and groupby[0] == "landscape_id":
@@ -35,9 +35,9 @@ class Systeme(models.Model):
                             'landscape_id': (landscape.id, landscape.name),
                             'landscape_id_count': self.search_count(domain + [('landscape_id', '=', landscape.id)])
                           } for landscape in landscapes if self.search_count(domain + [('landscape_id', '=', landscape.id)]) != 0]
-                print('result:', result)
+                # print('result:', result)
                 return result
-        print('result:', res)
+        # print('result:', res)
         return res
     # @api.onchange('landscape_id')
     # def description_of_landscape(self):
@@ -49,7 +49,7 @@ class Systeme(models.Model):
 
 class Server(models.Model):
     _name = "jvdm.server"
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(size=128)
     port = fields.Char('Port SSH', size=128)
