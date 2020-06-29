@@ -12,6 +12,11 @@ from odoo import models, fields, api
 class CMDBUsers(models.Model):
     _name = 'cmdb.users'
 
+    @api.onchange('landscp_write_access')
+    def _onchange_landscp_write_access(self):
+        if self.landscp_write_access:
+            self.landscp_read_access = True
+
     user_id = fields.Many2one(comodel_name="res.users", string="User")
     landscp_read_access = fields.Boolean(string="Read Access", default=True)
     landscp_write_access = fields.Boolean(string="Write Access", default=True)
