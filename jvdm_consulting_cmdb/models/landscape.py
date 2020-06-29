@@ -36,7 +36,7 @@ class ProjectLandscape(models.Model):
                 # self.sudo().message_subscribe(partner_ids=self.user_ids.partner_id.ids + manager_ids)
                 self.message_subscribe(
                     partner_ids=[cmdb_user.user_id.partner_id.id for cmdb_user in self.cmdb_user_ids
-                                 if cmdb_user.landscp_read_access and cmdb_user.landscp_write_access] + manager_ids)
+                                 if cmdb_user.landscp_read_access or cmdb_user.landscp_write_access] + manager_ids)
                 group_cmdb_user_id = self.env['ir.model.data'].xmlid_to_res_id('jvdm_consulting_cmdb.group_cmdb_user')
                 group_object = self.env['res.groups'].sudo().browse(group_cmdb_user_id) \
                     .write({'users': [(4, cmdb_user.user_id.id) for cmdb_user in self.cmdb_user_ids
