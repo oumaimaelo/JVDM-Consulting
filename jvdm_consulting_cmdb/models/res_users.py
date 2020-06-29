@@ -13,5 +13,5 @@ class CMDBUsers(models.Model):
     _name = 'cmdb.users'
 
     user_id = fields.Many2one(comodel_name="res.users", string="User")
-    landscp_read_access = fields.Boolean(string="Read Access", default=False)
-    landscp_write_access = fields.Boolean(string="Write Access", default=False)
+    landscp_read_access = fields.Boolean(string="Read Access", default=True)
+    landscp_write_access = fields.Boolean(string="Write Access", default=True)
