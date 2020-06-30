@@ -34,3 +34,4 @@ class ResPartner(models.Model):
                                                      domain="[('internal_type', '=', 'receivable'), ('deprecated', '=', False)]",
                                                      help="This account will be used instead of the default one as the receivable account for the current partner",
                                                      required=False)
+

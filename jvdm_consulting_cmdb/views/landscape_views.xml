@@ -39,10 +39,21 @@
                                     </tree>
                                 </field>
                             </page>
+                            <page string="Authorized Users">
+<!--                                <field name="user_ids" nolabel="1" colspan="4">-->
+                                <field name="cmdb_user_ids" nolabel="1" colspan="4" widget="one2many">
+                                    <tree editable="top">
+                                        <field name="user_id"/>
+                                        <field name="landscp_read_access"/>
+                                        <field name="landscp_write_access"/>
+                                    </tree>
+                                </field>
+                            </page>
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
                         <field name="message_ids" widget="mail_thread"/>
                     </div>
                 </form>
