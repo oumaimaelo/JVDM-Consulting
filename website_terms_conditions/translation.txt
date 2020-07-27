@@ -1,0 +1,29 @@
+For loading a translation follow this procedure.
+
+
+Setp1: Go to 
+settings -> Translations-> Import/Export -> Export Translation
+ 
+
+
+Step 2:
+Choose the language you wnat to translate ,  Po File option , and select the module of which you wnat create a translation
+http://prntscr.com/efgljh
+
+Step 3.
+Click Export
+
+Step 4. 
+Download file
+
+http://prntscr.com/efgr3r
+
+step 5:
+Create a folder by the name i18n  and paste the file there.
+
+Change the text you want to from one language to another language
+
+http://prntscr.com/efgsr2
+
+
+Now new text will be automatically loaded on a language change.
