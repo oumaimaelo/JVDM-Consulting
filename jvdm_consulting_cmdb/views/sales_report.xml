@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <template id="report_saleorder_document_inherit_jvdm" inherit_id="sale.report_saleorder_document">
+            <p t-field="doc.note" position="after">
+                <div t-if="doc.state in ['draft','sent']">
+                    <span t-field="doc.sale_order_template_id.x_terms_and_conditions_approval"/>
+                </div>
+            </p>
+            <p id="fiscal_position_remark" position="after">
+                <div t-if="doc.state in ['draft','sent']" style="page-break-before: always;">
+                    <span t-field="doc.sale_order_template_id.x_terms_and_conditions"/>
+                </div>
+            </p>
+        </template>
+    </data>
+</odoo>
