@@ -22,7 +22,8 @@
     'sequence': 24,
 
     # any module necessary for this one to work correctly
-    'depends': ['project'],
+    'depends': ['project',
+                'sale_management'],
 
     'qweb': ['static/src/xml/cmdb.xml'],
 
@@ -34,6 +35,8 @@
         'views/landscape_views.xml',
         'views/server_views.xml',
         'views/system_views.xml',
+        'views/sales_views.xml',
+        'views/sales_report.xml',
     ],
     'installable': True,
     'auto_install': False,
