@@ -4,7 +4,7 @@
         <template id="report_saleorder_document_inherit_jvdm" inherit_id="sale.report_saleorder_document">
             <p t-field="doc.note" position="after">
                 <div t-if="doc.state in ['draft','sent']">
-                    <span t-field="doc.sale_order_template_id.x_terms_and_conditions_approval"/>
+                    <span t-raw="doc.sale_order_template_id.x_terms_and_conditions_approval"/>
                 </div>
             </p>
             <p id="fiscal_position_remark" position="after">
@@ -12,7 +12,7 @@
                     <br/>
                     <strong>Terms and Conditions:</strong>
                     <br/>
-                    <span t-field="doc.sale_order_template_id.x_terms_and_conditions"/>
+                    <span t-raw="doc.sale_order_template_id.x_terms_and_conditions"/>
                 </div>
             </p>
         </template>
