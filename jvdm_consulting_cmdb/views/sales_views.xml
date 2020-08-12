@@ -6,14 +6,16 @@
         <field name="model">sale.order.template</field>
         <field name="inherit_id" ref="sale_management.sale_order_template_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='note']" position="replace">
-                <field name="x_terms_and_conditions_approval" nolabel="1"
-                       placeholder="Terms and Conditions Approval" widget="html"/>
-            </xpath>
+<!--            <xpath expr="//field[@name='note']" position="after">-->
+<!--                <field name="x_terms_and_conditions_approval" nolabel="1"-->
+<!--                       placeholder="Terms and Conditions Approval" widget="html"/>-->
+<!--            </xpath>-->
             <xpath expr="//notebook" position="inside">
                 <page string="Terms and Conditions">
                     <field name="x_terms_and_conditions" nolabel="1"
                            placeholder="Terms and Conditions" widget="html"/>
+                    <field name="x_terms_and_conditions_approval" nolabel="1"
+                       placeholder="Terms and Conditions Approval" widget="html"/>
                 </page>
             </xpath>
         </field>
