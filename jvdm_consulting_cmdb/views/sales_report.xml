@@ -9,9 +9,6 @@
             </p>
             <p id="fiscal_position_remark" position="after">
                 <div t-if="doc.state in ['draft','sent']" style="page-break-before: always;">
-                    <br/>
-                    <strong>Terms and Conditions:</strong>
-                    <br/>
                     <span t-raw="doc.sale_order_template_id.x_terms_and_conditions"/>
                 </div>
             </p>
