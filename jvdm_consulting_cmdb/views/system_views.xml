@@ -12,6 +12,21 @@
             </div>
 
             <div class="footer o_standard_footer">
+                <div class="header">
+                    <div class="row">
+                        <div class="col-3 mb4">
+                            <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;"
+                                 alt="Logo"/>
+                        </div>
+                        <div class="col-9 text-right" style="margin-top:22px;" t-field="company.report_header"
+                             name="moto"/>
+                    </div>
+                    <div t-if="company.logo or company.report_header" class="row zero_min_height">
+                        <div class="col-12">
+                            <div style="border-bottom: 1px solid black;"/>
+                        </div>
+                    </div>
+                </div>
                 <div class="text-center" style="border-top: 1px solid black;">
                     <ul class="list-inline mb4">
                         <!-- using the list-inline-item class from bootstrap causes weird behaviours in pdf report
