@@ -21,15 +21,7 @@
 
 
         <template id="external_layout_standard_cgv">
-            <div class="header"/>
-            <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name"
-                 t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
-                <t t-call="web.address_layout"/>
-                <t t-raw="0"/>
-            </div>
-
-            <div class="footer o_standard_footer">
-                <div class="header">
+              <div class="header">
                     <div class="row">
                         <div class="col-3 mb4">
                             <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;"
@@ -44,6 +36,14 @@
                         </div>
                     </div>
                 </div>
+            <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name"
+                 t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <t t-call="web.address_layout"/>
+                <t t-raw="0"/>
+            </div>
+
+            <div class="footer o_standard_footer">
+
                 <div class="text-center" style="border-top: 1px solid black;">
                     <ul class="list-inline mb4">
                         <!-- using the list-inline-item class from bootstrap causes weird behaviours in pdf report
