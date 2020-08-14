@@ -100,7 +100,7 @@
             </field>
         </record>
         <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
-        <menuitem id="main_cmdb_menu" name="JVDM" />
+        <menuitem id="main_cmdb_menu" name="CMDB" />
         <menuitem name="CMDB" sequence="0" id="menu_cmdb" parent="main_cmdb_menu" groups="group_cmdb_user,group_cmdb_manager"/>
         <menuitem name="Configuration" sequence="0" id="menu_configuration" parent="main_cmdb_menu" groups="group_cmdb_user,group_cmdb_manager"/>
         <menuitem action="action_landscape_form" sequence="1" id="menu_landscape" parent="menu_configuration"/>
