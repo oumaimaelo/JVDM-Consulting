@@ -27,6 +27,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='stage_id']" position="after">
                     <field name="kanban_state" string="Status" widget="state_selection" optional="show"/>
+                    <field name="priority" widget="priority" class="mr-3"/>
                 </xpath>
             </field>
         </record>

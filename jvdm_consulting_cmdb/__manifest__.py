@@ -37,6 +37,7 @@
         'views/system_views.xml',
         'views/sales_views.xml',
         'views/sales_report.xml',
+        'report/report_templates.xml',
     ],
     'installable': True,
     'auto_install': False,
