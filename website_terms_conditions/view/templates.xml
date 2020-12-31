@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  	<data>
+		<template id="terms_js" inherit_id="website.assets_frontend" name="terms js">
+			<xpath expr="." position="inside">
+				<script type="text/javascript" src="/website_terms_conditions/static/src/js/website_terms_condition.js"></script>
+				<link rel='stylesheet' href='/website_terms_conditions/static/src/css/terms_and _consitions.css'/>
+			</xpath>
+		</template>
+
+		<template id="website_term_condition" inherit_id="website_sale.payment" >
+			<xpath expr="//div[@id='payment_method']" position="after">
+                <t t-set="terms_info" t-value="website.get_info()"/>
+                <t t-set="content" t-value="terms_info.get('content')"/>
+                <t t-set="label" t-value="terms_info.get('label')"/>
+                <t t-set="title" t-value="terms_info.get('title')"/>
+                <t t-set="display_option" t-value="terms_info.get('display_option')"/>
+                <t t-set="show_terms_conditions" t-value="terms_info.get('show_terms_conditions')"/>
+                <t t-set="show_checkbox_on_checkout" t-value="terms_info.get('show_checkbox_on_checkout')"/>
+
+				<div t-if="not optional_products and website_sale_order and website_sale_order.website_order_line" class="wk_terms_conditions checkbox col-lg-10 col-sm-10 col-md-10 mt32">
+					<data id="data_terms_conditions" t-att-terms="content or 'No Condition Found'" t-att-show_terms="show_terms_conditions" t-att-show_checkbox="show_checkbox_on_checkout"/>
+
+					<label t-if="show_checkbox_on_checkout and show_terms_conditions">
+                        <input type="checkbox" value="" id="checkbox_terms"><strong t-esc="title"></strong></input>
+                    </label>
+						<a href='#' class="terms_link" data-toggle="modal" data-target="#myModal" t-if="show_terms_conditions">
+                            <strong t-esc="label"></strong>
+                        </a>
+						<div t-if="display_option" id="myModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                            <!-- Modal content-->
+                                <div class="modal-content">
+		                            <div class="modal-header" style="background-color:#CCCCCC; border-radius: 5px 5px 0px 0px; box-shadow: 0px 3px 1px #888888;" >
+		                               <h4 class="modal-title">
+                                           <em>
+                                               <u>
+                                                   <strong>Terms and Conditions</strong>
+                                                </u>
+                                            </em>
+                                        </h4>
+		                                <button type="button" class="close" data-dismiss="modal">X</button>
+		                            </div>
+									<div class="modal-body">
+		                                <div class="terms"></div>
+                                    </div>
+        							<div class="modal-footer">
+				                        <center>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        </center>
+        							</div>
+        						</div>
+	                        </div>
+	                    </div>
+	                </div>
+				<div t-if="not display_option" class="wk_content col-lg-10 col-sm-10 col-md-10">
+				</div>
+			</xpath>
+		</template>
+
+  </data>
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <template id="report_saleorder_document_inherit_jvdm" inherit_id="sale.report_saleorder_document">
+            <p t-field="doc.note" position="after">
+                <div t-if="doc.state in ['draft','sent']">
+                    <span t-raw="doc.sale_order_template_id.x_terms_and_conditions_approval"/>
+                </div>
+            </p>
+            <t t-call="web.external_layout" position="after">
+                <t t-call="jvdm_consulting_cmdb.external_layout_cgv">
+                    <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
+
+                    <div t-if="doc.state in ['draft','sent']" style="page-break-before: always;">
+                        <span t-raw="doc.sale_order_template_id.x_terms_and_conditions"/>
+                    </div>
+                </t>
+
+            </t>
+        </template>
+    </data>
+</odoo>

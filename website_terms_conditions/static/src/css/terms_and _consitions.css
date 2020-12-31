@@ -1,0 +1,24 @@
+.wk_content{
+	height:100px;
+	min-height:0px;
+	background-color: #E0E0E0;
+	overflow: scroll;
+	overflow-x: hidden;
+	display:none;
+	margin-bottom:10px;
+	border:solid 1px black;
+	color:#212121;
+}
+.wk_terms_conditions {
+	padding: 0;
+}
+.wk_terms_conditions label input {
+	vertical-align: top;
+}
+.wk_terms_conditions label strong {
+	margin-left: 10px;
+	vertical-align: text-bottom;
+}
+.terms_link strong {
+	vertical-align: text-bottom;
+}

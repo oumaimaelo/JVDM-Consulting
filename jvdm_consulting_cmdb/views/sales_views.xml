@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Form View to Modify it -->
+    <record id="inherited_sale_order_template_view_form" model="ir.ui.view">
+        <field name="name">sale.order.template.inherited.form</field>
+        <field name="model">sale.order.template</field>
+        <field name="inherit_id" ref="sale_management.sale_order_template_view_form"/>
+        <field name="arch" type="xml">
+<!--            <xpath expr="//field[@name='note']" position="after">-->
+<!--                <field name="x_terms_and_conditions_approval" nolabel="1"-->
+<!--                       placeholder="Terms and Conditions Approval" widget="html"/>-->
+<!--            </xpath>-->
+            <xpath expr="//notebook" position="inside">
+                <page string="Terms and Conditions">
+                    <field name="x_terms_and_conditions_approval" nolabel="1"
+                       placeholder="Terms and Conditions Approval" widget="html"/>
+                    <field name="x_terms_and_conditions" nolabel="1"
+                           placeholder="Terms and Conditions" widget="html"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
