@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <date noupdate="0">
+    <data noupdate="0">
         <template id="report_invoice_document" inherit_id="account.report_invoice_document">
             <xpath expr="//p[@name='comment']" position="before">
                 <p t-if="o.type in ('out_invoice', 'out_refund') and o.fiscal_position_id.name == 'Régime Intra-Communautaire'">
@@ -10,5 +10,5 @@
                 </p>
             </xpath>
         </template>
-    </date>
+    </data>
 </odoo>
