@@ -488,14 +488,8 @@ msgstr ""
 
 #. module: jvdm_consulting_cmdb
 #: model_terms:ir.ui.view,arch_db:jvdm_consulting_cmdb.report_invoice_document
-msgid ""
-"Reverse charge Art. 39bis – intra-community supply\n"
-"                    <br/>\n"
-"                    <br/>"
-msgstr ""
-"BTW verlegd: Art. 39bis – intracommunautaire levering\n"
-"                <br/>\n"
-"                <br/>"
+msgid "Reverse charge Art. 39bis – intra-community supply"
+msgstr "BTW verlegd: Art. 39bis – intracommunautaire levering"
 
 #. module: jvdm_consulting_cmdb
 #: model:ir.model.fields,field_description:jvdm_consulting_cmdb.field_jvdm_server__message_has_sms_error
