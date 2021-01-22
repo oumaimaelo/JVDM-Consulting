@@ -64,7 +64,7 @@
         </record>
 
         <act_window id="act_change_project_task_status"
-                    name="Change Status"
+                    name="Modify Status"
                     res_model="project.task.status"
                     binding_model="project.task"
                     view_mode="form" target="new"
