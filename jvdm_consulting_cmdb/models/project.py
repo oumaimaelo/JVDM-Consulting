@@ -20,6 +20,9 @@ class ProjectTask(models.Model):
         result = super(ProjectTask, self).create(vals)
         return result
 
+    # def change_status(self):
+    #     for record in self:
+
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
