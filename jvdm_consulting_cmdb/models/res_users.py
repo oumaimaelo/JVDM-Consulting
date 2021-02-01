@@ -27,10 +27,10 @@ class CMDBUsers(models.Model):
     landscp_write_access = fields.Boolean(string="Write Access", default=True)
 
 
-class ResUsers(models.Model):
-    _inherit = 'res.users'
-
-    last_timesheet_date = fields.Boolean("Keep last timesheet date")
+# class ResUsers(models.Model):
+#     _inherit = 'res.users'
+#
+#     last_timesheet_date = fields.Boolean("Keep last timesheet date")
 
 
 # class AccountAnalyticLine(models.Model):
