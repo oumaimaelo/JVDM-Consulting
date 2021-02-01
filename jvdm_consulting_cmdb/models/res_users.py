@@ -38,7 +38,7 @@ class AccountAnalyticLine(models.Model):
 
     def _default_date(self):
         if self.env.user.last_timesheet_date:
-            record = self.env['account.analytic.line'].search([('user_id', '=', self._uid)], limit=1)
+            record = self.search([('user_id', '=', self._uid)], limit=1)
             if record:
                 return record.date
         return fields.Date.context_today(self)

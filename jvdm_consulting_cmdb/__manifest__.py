@@ -22,7 +22,8 @@
     'sequence': 24,
 
     # any module necessary for this one to work correctly
-    'depends': ['project',
+    'depends': ['base',
+                'project',
                 'sale_management'],
 
     'qweb': ['static/src/xml/cmdb.xml'],
