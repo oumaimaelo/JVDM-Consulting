@@ -31,6 +31,7 @@
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
+        'views/users_views.xml',
         'views/project_views.xml',
         'views/landscape_views.xml',
         'views/server_views.xml',

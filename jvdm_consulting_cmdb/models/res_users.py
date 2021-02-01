@@ -25,3 +25,22 @@ class CMDBUsers(models.Model):
     user_id = fields.Many2one(comodel_name="res.users", string="User")
     landscp_read_access = fields.Boolean(string="Read Access", default=True)
     landscp_write_access = fields.Boolean(string="Write Access", default=True)
+
+
+class ResUsers(models.Model):
+    _inherit = 'res.users'
+
+    last_timesheet_date = fields.Boolean("Keep last timesheet date")
+
+
+class AccountAnalyticLine(models.Model):
+    _inherit = 'account.analytic.line'
+
+    def _default_date(self):
+        if self.env.user.last_timesheet_date:
+            record = self.env['account.analytic.line'].search([('user_id', '=', self._uid)], limit=1)
+            if record:
+                return record.date
+        return fields.Date.context_today(self)
+
+    date = fields.Date('Date', required=True, index=True, default=_default_date)
