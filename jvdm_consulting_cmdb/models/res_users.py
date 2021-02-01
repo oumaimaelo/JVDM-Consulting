@@ -33,14 +33,14 @@ class ResUsers(models.Model):
     last_timesheet_date = fields.Boolean("Keep last timesheet date")
 
 
-class AccountAnalyticLine(models.Model):
-    _inherit = 'account.analytic.line'
-
-    def _default_date(self):
-        if self.env.user.last_timesheet_date:
-            record = self.env['account.analytic.line'].search([('user_id', '=', self._uid)], limit=1)
-            if record:
-                return record.date
-        return fields.Date.context_today(self)
-
-    date = fields.Date('Date', required=True, index=True, default=_default_date)
+# class AccountAnalyticLine(models.Model):
+#     _inherit = 'account.analytic.line'
+#
+#     def _default_date(self):
+#         if self.env.user.last_timesheet_date:
+#             record = self.env['account.analytic.line'].search([('user_id', '=', self._uid)], limit=1)
+#             if record:
+#                 return record.date
+#         return fields.Date.context_today(self)
+#
+#     date = fields.Date('Date', required=True, index=True, default=_default_date)
